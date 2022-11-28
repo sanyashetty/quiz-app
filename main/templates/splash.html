@@ -1,0 +1,53 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block title %} 
+SPLASH 
+{% endblock %} 
+
+{% block styles %} 
+{% endblock %} 
+
+{% block body %}
+<div>
+  <h1>REGISTER / LOGIN</h1>
+  <div>
+    <h2>Sign Up</h2>
+    <form method="POST" action="/signup/" class="row g-3">
+      {% csrf_token %}
+      <div class="col-12">
+        <label for="email1" class="form-label">Email</label>
+        <input name="email" class="form-control" type="email" placeholder="Enter Email" id="email1"/>
+      </div>
+      <div class="col-md-6">
+        <label for="username1" class="form-label">Username</label>
+        <input name="username" class="form-control" type="text" placeholder="Username" id="username1"/>
+      </div>
+      <div class="col-md-6">
+        <label for="password1" class="form-label">Password (must be at least 8 characters)</label>
+        <input name="password" class="form-control" type="password" placeholder="Password" id="password1" />
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Sign Up</button>
+      </div>
+    </form>
+  </div>
+  <div>
+    <h2>Log In</h2>
+    <form method="POST" action="/login/" class="row g-3">
+      {% csrf_token %}
+      <div class="col-md-6">
+        <label for="username2" class="form-label">Username</label>
+        <input name="username" class="form-control" type="text" placeholder="Enter username" id="username2"/>
+      </div>
+      <div class="col-md-6">
+        <label for="password2" class="form-label">Password (must be at least 8 characters)</label>
+        <input name="password" class="form-control" type="password" placeholder="Password" id="password2"/>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

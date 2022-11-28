@@ -1,13 +1,58 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} 
+{% load static %} 
 
-{% block title %}
-title
-{% endblock %}
+{% block title %} 
+home
+{% endblock %} 
 
-{% block styles %}
-{% endblock %}
+{% block styles %} 
+{% endblock %} 
 
 {% block body %}
-<h1>hello!</h1>
+<div class="container text-center">
+  <h1>hello, {{ user.username }}!</h1>
+  <a href="/logout"><button class="btn btn-primary">Logout</button></a>
+</div>
+  <div>
+    <form method="POST" action="/" class="row g-3">
+      {% csrf_token %}
+      <h2>Tweet something!</h2>
+      <div class="col-md-4">
+        <input
+          name="body"
+          type="text"
+          class="form-control"
+          placeholder="Enter your Tweet here"
+        />
+      </div>
+      <div class="col-12">
+        <input type="submit" value="post tweet" class="btn btn-primary" />
+      </div>
+    </form>
+  </div>
+
+  <div>
+    {% for tweet in tweets %}
+    <div>
+      <p>
+        <strong>{{ tweet.author }}</strong> | <em>{{ tweet.created_at }}</em>
+      </p>
+      <p>{{ tweet.body }}</p>
+    </div>
+
+    <p>
+      <a href="like?id={{tweet.id}}">
+        {% if request.user in tweet.likes.all %} 
+            unlike 
+        {% else %} 
+            like 
+        {% endif %} </a>({{ tweet.likes.count }} &hearts;)
+    </p>
+
+    {% if tweet.author == user %}
+    <a href="delete?id={{tweet.id}}">delete tweet</a>
+    {% endif %} 
+    
+    {% endfor %}
+  </div>
 {% endblock %}
