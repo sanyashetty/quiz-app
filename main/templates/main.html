@@ -10,10 +10,18 @@ home
 
 {% block body %}
 <div class="container text-center">
-  <h1>hello, {{ user.username }}!</h1>
+  <h1>Hello, {{ user.username }}!</h1>
+  <h3>It's time to study!</h3>
+
   <a href="/logout"><button class="btn btn-primary">Logout</button></a>
+
 </div>
-  <div>
+
+<div>
+  <h3>Your study sets: </h3>
+  <a href="/newset"><button class="btn btn-primary">New Study Set</button></a>
+</div>
+  <!-- <div>
     <form method="POST" action="/" class="row g-3">
       {% csrf_token %}
       <h2>Tweet something!</h2>
@@ -54,5 +62,5 @@ home
     {% endif %} 
     
     {% endfor %}
-  </div>
+  </div> -->
 {% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block title %} 
+Create new set 
+{% endblock %} 
+
+{% block styles %} 
+{% endblock %} 
+
+{% block body %}
+<div>
+  <h1>Create a new study set</h1>
+  <div>
+    <form method="POST" action="/newset/" class="row g-3">
+      {% csrf_token %}
+      <div class="col-md-6">
+        <label for="title1" class="form-label">Title</label>
+        <input name="title" class="form-control" type="text" placeholder="Enter Title" id="title1"/>
+      </div>
+      <div class="col-md-6">
+        <label for="course1" class="form-label">Course</label>
+        <input name="course" class="form-control" type="text" placeholder="Enter Course" id="course1"/>
+      </div>
+      <div class="col-12">
+        <label for="description1" class="form-label">Description</label>
+        <input name="description" class="form-control" type="text" placeholder="Enter Description" id="description1" />
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Create</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

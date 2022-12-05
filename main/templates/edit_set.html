@@ -1,0 +1,66 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block title %} 
+Edit set 
+{% endblock %} 
+
+{% block styles %} 
+{% endblock %} 
+
+{% block body %}
+<div>
+  <div>
+    <h1>Edit study set</h1>
+  </div>
+  <div>
+    <h4>Add a question</h4>
+    <div>
+      <form method="POST" action="/editset/" class="row g-3">
+        {% csrf_token %}
+        <div class="col-md-4">
+          <label for="question1" class="form-label">Question</label>
+          <input
+            name="body"
+            type="text"
+            class="form-control"
+            placeholder="Enter question"
+            id = "question1"
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="answer1" class="form-label">Answer</label>
+          <input
+            name="answer"
+            type="text"
+            class="form-control"
+            placeholder="Enter answer"
+            id = "answer1"
+          />
+        </div>
+        <div class="col-12">
+          <input type="submit" value="Add" class="btn btn-primary" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3">
+  <h3>Existing questions:</h3>
+  {% for question in questions %}
+
+  <div class="col-md-6">
+    <h5>Question</h5>
+    <p>{{ question.body }}</p>
+  </div>
+  <div class="col-md-6">
+    <h5>Answer</h5>
+    <p>{{ question.answer }}</p>
+  </div>
+
+  {% endfor %}
+</div>
+
+
+{% endblock %}
