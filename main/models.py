@@ -20,6 +20,5 @@ class Question(models.Model):
     #ForeignKey is for many-to-one relationship --> many questions to one set
     set = models.ForeignKey(Set, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField()
-    
     def __str__(self):
         return self.body
