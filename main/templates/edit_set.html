@@ -16,7 +16,7 @@ Edit set
   <div>
     <h4>Add a question</h4>
     <div>
-      <form method="POST" action="/editset/" class="row g-3">
+      <form method="POST" action= "addqs" class="row g-3">
         {% csrf_token %}
         <div class="col-md-4">
           <label for="question1" class="form-label">Question</label>
@@ -25,7 +25,6 @@ Edit set
             type="text"
             class="form-control"
             placeholder="Enter question"
-            id = "question1"
           />
         </div>
         <div class="col-md-4">

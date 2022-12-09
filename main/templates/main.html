@@ -19,48 +19,28 @@ home
 
 <div>
   <h3>Your study sets: </h3>
-  <a href="/newset"><button class="btn btn-primary">New Study Set</button></a>
-</div>
-  <!-- <div>
-    <form method="POST" action="/" class="row g-3">
-      {% csrf_token %}
-      <h2>Tweet something!</h2>
-      <div class="col-md-4">
-        <input
-          name="body"
-          type="text"
-          class="form-control"
-          placeholder="Enter your Tweet here"
-        />
-      </div>
-      <div class="col-12">
-        <input type="submit" value="post tweet" class="btn btn-primary" />
-      </div>
-    </form>
+  <div>
+    <a href="/newset"><button class="btn btn-primary">New Study Set</button></a>
+  </div>
+  {% for set in sets %}
+
+  <div class = "row g-3">
+    <div class="col-md-4">
+      <h5>Title</h5>
+      <p>{{ set.title }}</p>
+    </div>
+    <div class="col-md-4">
+      <h5>Course</h5>
+      <p>{{ set.course }}</p>
+    </div>
+    <div class="col-12">
+      <h5>Description</h5>
+      <p>{{ set.description }}</p>
+    </div>
+    <a href= {{ set.get_absolute_url }}><button class="btn btn-primary">Edit Study Set</button></a>  
   </div>
 
-  <div>
-    {% for tweet in tweets %}
-    <div>
-      <p>
-        <strong>{{ tweet.author }}</strong> | <em>{{ tweet.created_at }}</em>
-      </p>
-      <p>{{ tweet.body }}</p>
-    </div>
+  {% endfor %}
+</div>
 
-    <p>
-      <a href="like?id={{tweet.id}}">
-        {% if request.user in tweet.likes.all %} 
-            unlike 
-        {% else %} 
-            like 
-        {% endif %} </a>({{ tweet.likes.count }} &hearts;)
-    </p>
-
-    {% if tweet.author == user %}
-    <a href="delete?id={{tweet.id}}">delete tweet</a>
-    {% endif %} 
-    
-    {% endfor %}
-  </div> -->
 {% endblock %}
