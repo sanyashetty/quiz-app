@@ -20,14 +20,17 @@ class SetDetailView(DetailView):
 
 
 def main_view(request):
-    # if request.method == 'POST' and request.POST['title'] != "":
-    #     set = Set.objects.create(
-    #         title=request.POST['title'],
-    #         course=request.POST['course'],
-    #         description=request.POST['description'],
-    #         created_at=datetime.now()
-    #     )
-    #     set.save()
+    if not request.user.is_authenticated:
+        return redirect('/splash/')
+    if request.method == 'POST' and request.POST['title'] != "":
+        set = Set.objects.create(
+            title=request.POST['title'],
+            course=request.POST['course'],
+            description=request.POST['description'],
+            created_at=datetime.now(),
+            author = request.user
+        )
+        set.save()
     sets = Set.objects.filter(author = request.user)
     return render(request, 'main.html',{'sets': sets})
 
@@ -70,16 +73,6 @@ def logout_view(request):
     return redirect('/splash')
 
 def newset_view(request):
-    if request.method == 'POST' and request.POST['body'] != "":
-        set = Set.objects.create(
-            title=request.POST['title'],
-            course=request.POST['course'],
-            description=request.POST['description'],
-            created_at=datetime.now(),
-            author = request.user
-        )
-        set.save()
-    sets = Set.objects.all().order_by('-created_at')
     return render(request, 'newset.html')
 
 def edit_set_view(request, set_id):
@@ -92,3 +85,8 @@ def edit_set_view(request, set_id):
         )
         question.save()
     return redirect('/editset/'+str(set_id))
+
+# def delete_question_view(request, set_id):
+#     question = Question.objects.get(id=request.GET['id'])
+#     question.delete()
+#     return redirect('/editset/'+str(set_id))

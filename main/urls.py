@@ -11,5 +11,6 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout_view'),
     path('newset/', views.newset_view, name='newset_view'),
     path('editset/<int:set_id>/addqs', views.edit_set_view, name='add_question'),
+    # path('editset/<int:set_id>/delqs', views.delete_question_view, name='delete_question'),
     path('editset/<int:pk>/', views.SetDetailView.as_view(), name='set_detail'),
 ]
